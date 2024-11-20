@@ -25,10 +25,15 @@ jobs:
     - name: Build Docusaurus site
       run: yarn build
 
-    - name: Deploy to FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+    - name: Deploy to Scaleway Bucket
+      uses: jakejarvis/s3-sync-action@v0.5.1
       with:
-        server: ${{ vars.FTP_HOST }}
-        username: ${{ vars.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./build/
+        args: --acl public-read --delete
+      env:
+        AWS_S3_BUCKET: teststagegithubactionsadri
+        AWS_REGION: fr-par
+        AWS_ACCESS_KEY_ID: ${{ secrets.SCW_TEST_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SCW_TEST_SECRET_KEY }}
+        AWS_ENDPOINT: https://s3.fr-par.scw.cloud
+        SOURCE_DIR: ./build/
+
