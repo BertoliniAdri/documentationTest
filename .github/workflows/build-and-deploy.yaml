@@ -27,13 +27,11 @@ jobs:
 
     - name: Deploy to Scaleway Bucket
       uses: jakejarvis/s3-sync-action@v0.5.1
-      with:
-        args: --acl public-read --delete
       env:
-        AWS_S3_BUCKET: teststagegithubactionsadri
-        AWS_REGION: fr-par
-        AWS_ACCESS_KEY_ID: ${{ secrets.SCW_TEST_ACCESS_KEY }}
+        AWS_S3_BUCKET: ${{ vars.SCW_TEST_S3_BUCKET }}
+        AWS_REGION: ${{ vars.SCW_TEST_REGION }}
+        AWS_ACCESS_KEY_ID: ${{ vars.SCW_TEST_ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SCW_TEST_SECRET_KEY }}
-        AWS_ENDPOINT: https://s3.fr-par.scw.cloud
-        SOURCE_DIR: ./build/
+        AWS_ENDPOINT: ${{ vars.SCW_TEST_ENDPOINT }}
+        SOURCE_DIR: ${{ vars.SCW_TEST_SOURCE_DIR }}
 
