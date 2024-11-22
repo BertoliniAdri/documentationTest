@@ -33,5 +33,5 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ vars.SCW_TEST_ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SCW_TEST_SECRET_KEY }}
         AWS_ENDPOINT: ${{ vars.SCW_TEST_ENDPOINT }}
-        SOURCE_DIR: ${{ vars.SCW_TEST_SOURCE_DIR }}
+        #SOURCE_DIR: ${{ vars.SCW_TEST_SOURCE_DIR }}
 
